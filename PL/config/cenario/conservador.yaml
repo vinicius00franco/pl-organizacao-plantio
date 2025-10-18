@@ -1,0 +1,4 @@
+# @package _group_
+
+params:
+  percentual_maximo_soja_produtiva: 0.40

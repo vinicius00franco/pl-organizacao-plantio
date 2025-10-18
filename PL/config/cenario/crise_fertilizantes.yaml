@@ -1,0 +1,5 @@
+# @package _group_
+
+resources:
+  POTASSIO_DISPONIVEL_KG: 31500  # Redução de 30% de 45000
+  FOSFORO_DISPONIVEL_KG: 29400   # Redução de 30% de 42000

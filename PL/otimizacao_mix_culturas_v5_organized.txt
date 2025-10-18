@@ -1,0 +1,2 @@
+[2025-10-17 15:04:46] SMOKE TEST (external run): iniciando verificação do arquivo de log principal
+[2025-10-17 15:04:46] SMOKE TEST (external run): linha de verificação

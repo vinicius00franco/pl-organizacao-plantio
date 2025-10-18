@@ -1,0 +1,7 @@
+Cenário;Lucro Total;Soja Resistente (ha);Soja Produtiva (ha);Milho Safrinha (ha);Shadow Price (Área);Shadow Price (Água);Status
+base;2782302,123084742;100,0;240,0;60,0;5914,5895;-0,0;Optimal
+seca;2116126,6561999507;60,0;186,48491;60,0;-0,0;13,456173;Optimal
+conservador;2782302,123084742;100,0;240,0;60,0;5914,5895;-0,0;Optimal
+agressivo;2782302,123084742;100,0;240,0;60,0;5914,5895;-0,0;Optimal
+preco_alto_soja;3232085,2314695683;100,0;240,0;60,0;6966,3342;-0,0;Optimal
+crise_fertilizantes;2196438,5699599683;60,0;196,48952;60,0;-0,0;-0,0;Optimal

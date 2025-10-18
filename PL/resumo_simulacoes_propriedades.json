@@ -1,0 +1,144 @@
+{
+  "5": {
+    "pequena": {
+      "status": "Optimal",
+      "lucro": 71557.50385001318,
+      "plantio": {
+        "Hectares_Soja_Resistente": 1.8,
+        "Hectares_Soja_Produtiva": 6.6003042,
+        "Hectares_Milho_Safrinha": 1.8
+      },
+      "shadow_prices": {
+        "Minimo_Soja_Resistente": -110.04695,
+        "Minimo_Soja_Produtiva": -0.0,
+        "Minimo_Milho_Safrinha": -4989.6931,
+        "Risco_Maximo_Soja_Produtiva": -0.0,
+        "Restricao_Area_Total": -0.0,
+        "Restricao_Area_Nao_Compactada": -0.0,
+        "Restricao_Orcamento": -0.0,
+        "Restricao_Agua": 13.456173,
+        "Restricao_Potassio": -0.0,
+        "Restricao_Fosforo": -0.0,
+        "Restricao_Horas_Maquina": -0.0,
+        "Restricao_Armazenagem": -0.0
+      }
+    },
+    "media": {
+      "status": "Optimal",
+      "lucro": 298156.26202797616,
+      "plantio": {
+        "Hectares_Soja_Resistente": 7.5,
+        "Hectares_Soja_Produtiva": 27.501267,
+        "Hectares_Milho_Safrinha": 7.5
+      },
+      "shadow_prices": {
+        "Minimo_Soja_Resistente": -110.04695,
+        "Minimo_Soja_Produtiva": -0.0,
+        "Minimo_Milho_Safrinha": -4989.6931,
+        "Risco_Maximo_Soja_Produtiva": -0.0,
+        "Restricao_Area_Total": -0.0,
+        "Restricao_Area_Nao_Compactada": -0.0,
+        "Restricao_Orcamento": -0.0,
+        "Restricao_Agua": 13.456173,
+        "Restricao_Potassio": -0.0,
+        "Restricao_Fosforo": -0.0,
+        "Restricao_Horas_Maquina": -0.0,
+        "Restricao_Armazenagem": -0.0
+      }
+    },
+    "grande": {
+      "status": "Optimal",
+      "lucro": 2623775.1090571866,
+      "plantio": {
+        "Hectares_Soja_Resistente": 66.0,
+        "Hectares_Soja_Produtiva": 242.01115,
+        "Hectares_Milho_Safrinha": 66.0
+      },
+      "shadow_prices": {
+        "Minimo_Soja_Resistente": -110.04695,
+        "Minimo_Soja_Produtiva": -0.0,
+        "Minimo_Milho_Safrinha": -4989.6931,
+        "Risco_Maximo_Soja_Produtiva": -0.0,
+        "Restricao_Area_Total": -0.0,
+        "Restricao_Area_Nao_Compactada": -0.0,
+        "Restricao_Orcamento": -0.0,
+        "Restricao_Agua": 13.456173,
+        "Restricao_Potassio": -0.0,
+        "Restricao_Fosforo": -0.0,
+        "Restricao_Horas_Maquina": -0.0,
+        "Restricao_Armazenagem": -0.0
+      }
+    }
+  },
+  "110": {
+    "pequena": {
+      "status": "Optimal",
+      "lucro": 1639859.453195105,
+      "plantio": {
+        "Hectares_Soja_Resistente": 41.25,
+        "Hectares_Soja_Produtiva": 151.25697,
+        "Hectares_Milho_Safrinha": 41.25
+      },
+      "shadow_prices": {
+        "Minimo_Soja_Resistente": -110.04695,
+        "Minimo_Soja_Produtiva": -0.0,
+        "Minimo_Milho_Safrinha": -4989.6931,
+        "Risco_Maximo_Soja_Produtiva": -0.0,
+        "Restricao_Area_Total": -0.0,
+        "Restricao_Area_Nao_Compactada": -0.0,
+        "Restricao_Orcamento": -0.0,
+        "Restricao_Agua": 13.456173,
+        "Restricao_Potassio": -0.0,
+        "Restricao_Fosforo": -0.0,
+        "Restricao_Horas_Maquina": -0.0,
+        "Restricao_Armazenagem": -0.0
+      }
+    },
+    "media": {
+      "status": "Optimal",
+      "lucro": 6559437.81278042,
+      "plantio": {
+        "Hectares_Soja_Resistente": 165.0,
+        "Hectares_Soja_Produtiva": 605.02788,
+        "Hectares_Milho_Safrinha": 165.0
+      },
+      "shadow_prices": {
+        "Minimo_Soja_Resistente": -110.04695,
+        "Minimo_Soja_Produtiva": -0.0,
+        "Minimo_Milho_Safrinha": -4989.6931,
+        "Risco_Maximo_Soja_Produtiva": -0.0,
+        "Restricao_Area_Total": -0.0,
+        "Restricao_Area_Nao_Compactada": -0.0,
+        "Restricao_Orcamento": -0.0,
+        "Restricao_Agua": 13.456173,
+        "Restricao_Potassio": -0.0,
+        "Restricao_Fosforo": -0.0,
+        "Restricao_Horas_Maquina": -0.0,
+        "Restricao_Armazenagem": -0.0
+      }
+    },
+    "grande": {
+      "status": "Optimal",
+      "lucro": 57723052.39925811,
+      "plantio": {
+        "Hectares_Soja_Resistente": 1452.0,
+        "Hectares_Soja_Produtiva": 5324.2453,
+        "Hectares_Milho_Safrinha": 1452.0
+      },
+      "shadow_prices": {
+        "Minimo_Soja_Resistente": -110.04695,
+        "Minimo_Soja_Produtiva": -0.0,
+        "Minimo_Milho_Safrinha": -4989.6931,
+        "Risco_Maximo_Soja_Produtiva": -0.0,
+        "Restricao_Area_Total": -0.0,
+        "Restricao_Area_Nao_Compactada": -0.0,
+        "Restricao_Orcamento": -0.0,
+        "Restricao_Agua": 13.456173,
+        "Restricao_Potassio": -0.0,
+        "Restricao_Fosforo": -0.0,
+        "Restricao_Horas_Maquina": -0.0,
+        "Restricao_Armazenagem": -0.0
+      }
+    }
+  }
+}

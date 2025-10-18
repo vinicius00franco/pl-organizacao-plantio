@@ -1,0 +1,94 @@
+
+================================================================================
+Simulações iniciadas em 2025-10-16 15:32:17
+================================================================================
+
+--- MF = 5 ha ---
+
+-- PEQUENA --
+Recursos: {'AREA_TOTAL_DISPONIVEL_HA': 12, 'ORCAMENTO_TOTAL_DISPONIVEL': 26400, 'AGUA_TOTAL_DISPONIVEL_M3': 6000, 'POTASSIO_DISPONIVEL_KG': 1080, 'FOSFORO_DISPONIVEL_KG': 1008, 'AREA_NAO_COMPACTADA_HA': 12, 'HORAS_MAQUINA_DISPONIVEIS': 144, 'CAPACIDADE_SILO_TON': 60}
+Resultado:
+{'status': 'Optimal', 'lucro': 71557.50385001318, 'plantio': {'Hectares_Soja_Resistente': 1.8, 'Hectares_Soja_Produtiva': 6.6003042, 'Hectares_Milho_Safrinha': 1.8}, 'shadow_prices': {'Minimo_Soja_Resistente': -110.04695, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -4989.6931, 'Risco_Maximo_Soja_Produtiva': -0.0, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': -0.0, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': 13.456173, 'Restricao_Potassio': -0.0, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}}
+----------------------------------------
+
+-- MEDIA --
+Recursos: {'AREA_TOTAL_DISPONIVEL_HA': 50, 'ORCAMENTO_TOTAL_DISPONIVEL': 110000, 'AGUA_TOTAL_DISPONIVEL_M3': 25000, 'POTASSIO_DISPONIVEL_KG': 4500, 'FOSFORO_DISPONIVEL_KG': 4200, 'AREA_NAO_COMPACTADA_HA': 50, 'HORAS_MAQUINA_DISPONIVEIS': 600, 'CAPACIDADE_SILO_TON': 250}
+Resultado:
+{'status': 'Optimal', 'lucro': 298156.26202797616, 'plantio': {'Hectares_Soja_Resistente': 7.5, 'Hectares_Soja_Produtiva': 27.501267, 'Hectares_Milho_Safrinha': 7.5}, 'shadow_prices': {'Minimo_Soja_Resistente': -110.04695, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -4989.6931, 'Risco_Maximo_Soja_Produtiva': -0.0, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': -0.0, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': 13.456173, 'Restricao_Potassio': -0.0, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}}
+----------------------------------------
+
+-- GRANDE --
+Recursos: {'AREA_TOTAL_DISPONIVEL_HA': 440, 'ORCAMENTO_TOTAL_DISPONIVEL': 968000, 'AGUA_TOTAL_DISPONIVEL_M3': 220000, 'POTASSIO_DISPONIVEL_KG': 39600, 'FOSFORO_DISPONIVEL_KG': 36960, 'AREA_NAO_COMPACTADA_HA': 440, 'HORAS_MAQUINA_DISPONIVEIS': 5280, 'CAPACIDADE_SILO_TON': 2200}
+Resultado:
+{'status': 'Optimal', 'lucro': 2623775.1090571866, 'plantio': {'Hectares_Soja_Resistente': 66.0, 'Hectares_Soja_Produtiva': 242.01115, 'Hectares_Milho_Safrinha': 66.0}, 'shadow_prices': {'Minimo_Soja_Resistente': -110.04695, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -4989.6931, 'Risco_Maximo_Soja_Produtiva': -0.0, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': -0.0, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': 13.456173, 'Restricao_Potassio': -0.0, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}}
+----------------------------------------
+
+--- MF = 110 ha ---
+
+-- PEQUENA --
+Recursos: {'AREA_TOTAL_DISPONIVEL_HA': 275, 'ORCAMENTO_TOTAL_DISPONIVEL': 605000, 'AGUA_TOTAL_DISPONIVEL_M3': 137500, 'POTASSIO_DISPONIVEL_KG': 24750, 'FOSFORO_DISPONIVEL_KG': 23100, 'AREA_NAO_COMPACTADA_HA': 275, 'HORAS_MAQUINA_DISPONIVEIS': 3300, 'CAPACIDADE_SILO_TON': 1375}
+Resultado:
+{'status': 'Optimal', 'lucro': 1639859.453195105, 'plantio': {'Hectares_Soja_Resistente': 41.25, 'Hectares_Soja_Produtiva': 151.25697, 'Hectares_Milho_Safrinha': 41.25}, 'shadow_prices': {'Minimo_Soja_Resistente': -110.04695, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -4989.6931, 'Risco_Maximo_Soja_Produtiva': -0.0, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': -0.0, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': 13.456173, 'Restricao_Potassio': -0.0, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}}
+----------------------------------------
+
+-- MEDIA --
+Recursos: {'AREA_TOTAL_DISPONIVEL_HA': 1100, 'ORCAMENTO_TOTAL_DISPONIVEL': 2420000, 'AGUA_TOTAL_DISPONIVEL_M3': 550000, 'POTASSIO_DISPONIVEL_KG': 99000, 'FOSFORO_DISPONIVEL_KG': 92400, 'AREA_NAO_COMPACTADA_HA': 1100, 'HORAS_MAQUINA_DISPONIVEIS': 13200, 'CAPACIDADE_SILO_TON': 5500}
+Resultado:
+{'status': 'Optimal', 'lucro': 6559437.81278042, 'plantio': {'Hectares_Soja_Resistente': 165.0, 'Hectares_Soja_Produtiva': 605.02788, 'Hectares_Milho_Safrinha': 165.0}, 'shadow_prices': {'Minimo_Soja_Resistente': -110.04695, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -4989.6931, 'Risco_Maximo_Soja_Produtiva': -0.0, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': -0.0, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': 13.456173, 'Restricao_Potassio': -0.0, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}}
+----------------------------------------
+
+-- GRANDE --
+Recursos: {'AREA_TOTAL_DISPONIVEL_HA': 9680, 'ORCAMENTO_TOTAL_DISPONIVEL': 21296000, 'AGUA_TOTAL_DISPONIVEL_M3': 4840000, 'POTASSIO_DISPONIVEL_KG': 871200, 'FOSFORO_DISPONIVEL_KG': 813120, 'AREA_NAO_COMPACTADA_HA': 9680, 'HORAS_MAQUINA_DISPONIVEIS': 116160, 'CAPACIDADE_SILO_TON': 48400}
+Resultado:
+{'status': 'Optimal', 'lucro': 57723052.39925811, 'plantio': {'Hectares_Soja_Resistente': 1452.0, 'Hectares_Soja_Produtiva': 5324.2453, 'Hectares_Milho_Safrinha': 1452.0}, 'shadow_prices': {'Minimo_Soja_Resistente': -110.04695, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -4989.6931, 'Risco_Maximo_Soja_Produtiva': -0.0, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': -0.0, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': 13.456173, 'Restricao_Potassio': -0.0, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}}
+----------------------------------------
+
+Simulações finalizadas.
+================================================================================
+
+================================================================================
+Simulações iniciadas em 2025-10-16 15:42:43
+================================================================================
+
+--- MF = 5 ha ---
+
+-- PEQUENA --
+Recursos: {'AREA_TOTAL_DISPONIVEL_HA': 12, 'ORCAMENTO_TOTAL_DISPONIVEL': 26400, 'AGUA_TOTAL_DISPONIVEL_M3': 6000, 'POTASSIO_DISPONIVEL_KG': 1080, 'FOSFORO_DISPONIVEL_KG': 1008, 'AREA_NAO_COMPACTADA_HA': 12, 'HORAS_MAQUINA_DISPONIVEIS': 144, 'CAPACIDADE_SILO_TON': 60}
+Resultado:
+{'status': 'Optimal', 'lucro': 71557.50385001318, 'plantio': {'Hectares_Soja_Resistente': 1.8, 'Hectares_Soja_Produtiva': 6.6003042, 'Hectares_Milho_Safrinha': 1.8}, 'shadow_prices': {'Minimo_Soja_Resistente': -110.04695, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -4989.6931, 'Risco_Maximo_Soja_Produtiva': -0.0, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': -0.0, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': 13.456173, 'Restricao_Potassio': -0.0, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}}
+----------------------------------------
+
+-- MEDIA --
+Recursos: {'AREA_TOTAL_DISPONIVEL_HA': 50, 'ORCAMENTO_TOTAL_DISPONIVEL': 110000, 'AGUA_TOTAL_DISPONIVEL_M3': 25000, 'POTASSIO_DISPONIVEL_KG': 4500, 'FOSFORO_DISPONIVEL_KG': 4200, 'AREA_NAO_COMPACTADA_HA': 50, 'HORAS_MAQUINA_DISPONIVEIS': 600, 'CAPACIDADE_SILO_TON': 250}
+Resultado:
+{'status': 'Optimal', 'lucro': 298156.26202797616, 'plantio': {'Hectares_Soja_Resistente': 7.5, 'Hectares_Soja_Produtiva': 27.501267, 'Hectares_Milho_Safrinha': 7.5}, 'shadow_prices': {'Minimo_Soja_Resistente': -110.04695, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -4989.6931, 'Risco_Maximo_Soja_Produtiva': -0.0, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': -0.0, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': 13.456173, 'Restricao_Potassio': -0.0, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}}
+----------------------------------------
+
+-- GRANDE --
+Recursos: {'AREA_TOTAL_DISPONIVEL_HA': 440, 'ORCAMENTO_TOTAL_DISPONIVEL': 968000, 'AGUA_TOTAL_DISPONIVEL_M3': 220000, 'POTASSIO_DISPONIVEL_KG': 39600, 'FOSFORO_DISPONIVEL_KG': 36960, 'AREA_NAO_COMPACTADA_HA': 440, 'HORAS_MAQUINA_DISPONIVEIS': 5280, 'CAPACIDADE_SILO_TON': 2200}
+Resultado:
+{'status': 'Optimal', 'lucro': 2623775.1090571866, 'plantio': {'Hectares_Soja_Resistente': 66.0, 'Hectares_Soja_Produtiva': 242.01115, 'Hectares_Milho_Safrinha': 66.0}, 'shadow_prices': {'Minimo_Soja_Resistente': -110.04695, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -4989.6931, 'Risco_Maximo_Soja_Produtiva': -0.0, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': -0.0, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': 13.456173, 'Restricao_Potassio': -0.0, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}}
+----------------------------------------
+
+--- MF = 110 ha ---
+
+-- PEQUENA --
+Recursos: {'AREA_TOTAL_DISPONIVEL_HA': 275, 'ORCAMENTO_TOTAL_DISPONIVEL': 605000, 'AGUA_TOTAL_DISPONIVEL_M3': 137500, 'POTASSIO_DISPONIVEL_KG': 24750, 'FOSFORO_DISPONIVEL_KG': 23100, 'AREA_NAO_COMPACTADA_HA': 275, 'HORAS_MAQUINA_DISPONIVEIS': 3300, 'CAPACIDADE_SILO_TON': 1375}
+Resultado:
+{'status': 'Optimal', 'lucro': 1639859.453195105, 'plantio': {'Hectares_Soja_Resistente': 41.25, 'Hectares_Soja_Produtiva': 151.25697, 'Hectares_Milho_Safrinha': 41.25}, 'shadow_prices': {'Minimo_Soja_Resistente': -110.04695, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -4989.6931, 'Risco_Maximo_Soja_Produtiva': -0.0, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': -0.0, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': 13.456173, 'Restricao_Potassio': -0.0, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}}
+----------------------------------------
+
+-- MEDIA --
+Recursos: {'AREA_TOTAL_DISPONIVEL_HA': 1100, 'ORCAMENTO_TOTAL_DISPONIVEL': 2420000, 'AGUA_TOTAL_DISPONIVEL_M3': 550000, 'POTASSIO_DISPONIVEL_KG': 99000, 'FOSFORO_DISPONIVEL_KG': 92400, 'AREA_NAO_COMPACTADA_HA': 1100, 'HORAS_MAQUINA_DISPONIVEIS': 13200, 'CAPACIDADE_SILO_TON': 5500}
+Resultado:
+{'status': 'Optimal', 'lucro': 6559437.81278042, 'plantio': {'Hectares_Soja_Resistente': 165.0, 'Hectares_Soja_Produtiva': 605.02788, 'Hectares_Milho_Safrinha': 165.0}, 'shadow_prices': {'Minimo_Soja_Resistente': -110.04695, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -4989.6931, 'Risco_Maximo_Soja_Produtiva': -0.0, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': -0.0, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': 13.456173, 'Restricao_Potassio': -0.0, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}}
+----------------------------------------
+
+-- GRANDE --
+Recursos: {'AREA_TOTAL_DISPONIVEL_HA': 9680, 'ORCAMENTO_TOTAL_DISPONIVEL': 21296000, 'AGUA_TOTAL_DISPONIVEL_M3': 4840000, 'POTASSIO_DISPONIVEL_KG': 871200, 'FOSFORO_DISPONIVEL_KG': 813120, 'AREA_NAO_COMPACTADA_HA': 9680, 'HORAS_MAQUINA_DISPONIVEIS': 116160, 'CAPACIDADE_SILO_TON': 48400}
+Resultado:
+{'status': 'Optimal', 'lucro': 57723052.39925811, 'plantio': {'Hectares_Soja_Resistente': 1452.0, 'Hectares_Soja_Produtiva': 5324.2453, 'Hectares_Milho_Safrinha': 1452.0}, 'shadow_prices': {'Minimo_Soja_Resistente': -110.04695, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -4989.6931, 'Risco_Maximo_Soja_Produtiva': -0.0, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': -0.0, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': 13.456173, 'Restricao_Potassio': -0.0, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}}
+----------------------------------------
+
+Simulações finalizadas.
+================================================================================

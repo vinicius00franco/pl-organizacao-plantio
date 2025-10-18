@@ -1,3 +1,9 @@
 pulp
 pandas
 numpy
+hydra-core
+plotly
+dash
+nbformat
+openpyxl
+jupyter-dash

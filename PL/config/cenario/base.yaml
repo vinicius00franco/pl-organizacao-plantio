@@ -1,0 +1,18 @@
+
+resources:
+  AREA_TOTAL_DISPONIVEL_HA: 500
+  ORCAMENTO_TOTAL_DISPONIVEL: 1100000
+  AGUA_TOTAL_DISPONIVEL_M3: 250000
+  POTASSIO_DISPONIVEL_KG: 45000
+  FOSFORO_DISPONIVEL_KG: 42000
+  AREA_NAO_COMPACTADA_HA: 400
+  HORAS_MAQUINA_DISPONIVEIS: 6000
+  CAPACIDADE_SILO_TON: 2500
+
+params:
+  n_dados: 1500
+  seed: 42
+  preco_soja: 2200
+  preco_milho: 1300
+  percentual_minimo_por_cultura: 0.15
+  percentual_maximo_soja_produtiva: 0.60
