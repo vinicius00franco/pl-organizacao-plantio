@@ -409,13 +409,70 @@ def fetch_climate(cfg):
 
     r = connect_redis(redis_url)
     end = datetime.now()
-    start = datetime(end.year - years, end.month, end.day)
 
-    data = get_cached_or_fetch(r, local_cfg, start, end)
-    if data is None or (hasattr(data, 'empty') and data.empty):
-        return {"data": None, "precipitacoes": None, "fator": None}
+    # tentativa com retries e fallback
+    max_attempts = 3
+    attempt = 0
+    fetched_data = None
+    used_years = years
+    last_exception = None
 
+    while attempt < max_attempts and fetched_data is None:
+        start = datetime(end.year - used_years, end.month, end.day)
+        attempt += 1
+        try:
+            # tenta cache primeiro
+            data = get_cached_or_fetch(r, local_cfg, start, end)
+            if data is not None and not (hasattr(data, 'empty') and data.empty):
+                fetched_data = data
+                fetch_method = 'cache_or_fetch'
+                break
+
+            # se cache não retornou, ainda get_cached_or_fetch faz fetch, então recheck
+            # (mantemos a chamada acima porque get_cached_or_fetch já tenta buscar)
+
+        except Exception as e:
+            last_exception = e
+            # em caso de erro, reduzir janela e retry
+            used_years = max(1, int(used_years / 2))
+            continue
+
+    if fetched_data is None:
+        # última tentativa direta usando Meteostat com retries simples
+        used_years = max(1, used_years)
+        start = datetime(end.year - used_years, end.month, end.day)
+        backoff = 1
+        for i in range(3):
+            try:
+                print(f"Tentativa direta Meteostat (i={i}) para {used_years} anos...")
+                data = Daily(Point(lat, lon), start, end)
+                data = data.fetch()
+                if data is not None and not (hasattr(data, 'empty') and data.empty):
+                    fetched_data = data
+                    fetch_method = 'direct_fetch'
+                    break
+            except Exception as e:
+                last_exception = e
+                backoff *= 2
+
+    if fetched_data is None:
+        print(f"Falha ao obter dados climáticos após tentativas: {last_exception}")
+        return {"data": None, "precipitacoes": None, "fator": None, "summary": None}
+
+    data = fetched_data
+
+    # calcula precipitações por safra
     precipitacoes = calc_safra_precip(data, start, end)
+
+    # resumo prático: média das safras disponíveis e relação com média histórica
+    precip_vals = [p for (_, _, p) in precipitacoes if not pd.isna(p)]
+    precip_media_safra = float(pd.Series(precip_vals).mean()) if len(precip_vals) > 0 else None
+    precipitacao_mais_recente = precipitacoes[-1][2] if len(precipitacoes) > 0 else None
+    precipitacao_relativa = None
+    if precip_media_safra is not None and media_hist > 0:
+        precipitacao_relativa = float(precip_media_safra / media_hist)
+
+    # fator de impacto baseado na safra mais recente (se disponível)
     fator = None
     try:
         ultima = precipitacoes[-1][2]
@@ -424,4 +481,12 @@ def fetch_climate(cfg):
     except Exception:
         fator = None
 
-    return {"data": data, "precipitacoes": precipitacoes, "fator": fator}
+    summary = {
+        'precip_media_safra': precip_media_safra,
+        'precipitacao_mais_recente': float(precipitacao_mais_recente) if precipitacao_mais_recente is not None and not pd.isna(precipitacao_mais_recente) else None,
+        'precipitacao_relativa': precipitacao_relativa,
+        'fetch_method': fetch_method,
+        'used_years': used_years,
+    }
+
+    return {"data": data, "precipitacoes": precipitacoes, "fator": fator, "summary": summary}

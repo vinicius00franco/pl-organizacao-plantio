@@ -18,6 +18,7 @@ params:
   percentual_maximo_soja_produtiva: 0.60
 
 location:
+  # Propriedade exemplo: Sorriso, MT
   lat: -12.5449
   lon: -55.7126
   years: 2

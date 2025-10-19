@@ -5,7 +5,8 @@ resources:
   FOSFORO_DISPONIVEL_KG: 29400   # Redução de 30% de 42000
 
 location:
-  lat: -12.5449
-  lon: -55.7126
+  # Propriedade exemplo: Sorriso (outra fazenda), MT
+  lat: -12.5830
+  lon: -55.7210
   years: 2
   media_historica: 600.0
