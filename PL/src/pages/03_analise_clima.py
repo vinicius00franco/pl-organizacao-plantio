@@ -68,16 +68,60 @@ with tabs[0]:
         
         if st.button("Buscar Dados"):
             with st.spinner("Consultando dados climáticos..."):
-                resultado = service.buscar_por_cidade(cidade, years, media_hist)
+                # Busca coordenadas da cidade
+                coords = cidades_dict[cidade]
+                
+                # Salva localização selecionada no session_state
+                st.session_state.localizacao_selecionada = {
+                    'estado': estado,
+                    'cidade': cidade,
+                    'lat': coords['lat'],
+                    'lon': coords['lon'],
+                    'years': years,
+                    'media_historica': media_hist
+                }
+                
+                # Busca dados climáticos
+                resultado = service.buscar_dados_clima(
+                    lat=coords['lat'],
+                    lon=coords['lon'],
+                    years=years,
+                    media_historica=media_hist
+                )
+                
                 st.session_state.resultado_clima = resultado
+                st.success(f"✅ Dados encontrados para {cidade}, {estado}")
+                st.info("💡 Esta localização agora está ativa para uso na otimização com ajuste climático!")
     
     with col2:
         if st.session_state.get('resultado_clima'):
-            st.dataframe(df_comp, width='stretch')
+            resultado = st.session_state.resultado_clima
             
-            fig = px.bar(df_comp, x='nome', y='fator_clima', title='Fator Climático por Localização',
-                        color='fator_clima', color_continuous_scale='RdYlGn')
-            st.plotly_chart(fig, width='stretch')
+            # Mostra informações da localização selecionada
+            if 'localizacao_selecionada' in st.session_state:
+                loc = st.session_state.localizacao_selecionada
+                st.info(f"📍 **Localização ativa:** {loc['cidade']}, {loc['estado']} - pronta para usar na otimização!")
+            
+            # Mostra métricas principais
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                fator_val = resultado.get('fator', 'N/A')
+                st.metric("Fator Climático", f"{fator_val:.3f}" if isinstance(fator_val, (int, float)) else str(fator_val))
+            with col2:
+                precip_val = resultado.get('precip_media', 'N/A')
+                st.metric("Precip. Média", f"{precip_val:.1f} mm" if isinstance(precip_val, (int, float)) else str(precip_val))
+            with col3:
+                st.metric("Anos Analisados", years)
+            
+            # Interpretação
+            st.info(service.interpretar_fator_clima(resultado.get('fator')))
+            
+            # Gráfico de precipitação se disponível
+            if resultado.get('precipitacoes'):
+                df = pd.DataFrame(resultado['precipitacoes'], columns=['Início', 'Fim', 'Precipitação (mm)'])
+                
+                fig = px.bar(df, x='Início', y='Precipitação (mm)', title='Precipitação por Safra')
+                st.plotly_chart(fig, width='stretch')
 
 # Tab 2: Por Coordenadas
 with tabs[1]:

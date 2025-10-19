@@ -16,8 +16,31 @@ from omegaconf import OmegaConf
 
 st.set_page_config(page_title="Cenários", page_icon="🎯", layout="wide")
 
-st.title("Gerenciamento de Cenários")
-st.markdown("Visualize, edite e crie novos cenários de plantio.")
+st.title("Cenários de Plantio")
+st.markdown("**Cenários** são diferentes condições de mercado e clima. Cada um gera um plano de plantio diferente.")
+
+# Explicação visual
+with st.expander("❓ O que são cenários e por que são importantes?", expanded=False):
+    st.markdown("""
+    ### 💡 O que é um Cenário?
+    Um cenário define as **condições** sob as quais você vai plantar:
+    - 💰 **Preços de mercado** (soja alta? milho baixo?)
+    - 🌍 **Localização** (clima da sua região)
+    - 📦 **Recursos** (área, orçamento, água disponível)
+    
+    ### 🎯 Por que usar cenários diferentes?
+    - **Planejar para o futuro**: E se os preços subirem? E se cair?
+    - **Reduzir riscos**: Testar diferentes estratégias antes de plantar
+    - **Maximizar lucro**: Encontrar a melhor combinação de culturas
+    
+    ### 📊 Exemplos práticos:
+    - **"Base"**: Preços normais, estratégia equilibrada
+    - **"Agressivo"**: Preços altos → Planta mais da cultura mais lucrativa
+    - **"Conservador"**: Preços baixos → Diversifica mais para reduzir risco
+    - **"Seca"**: Pouca chuva → Prioriza culturas resistentes
+    """)
+
+st.markdown("---")
 
 # Inicializa o gerenciador centralizado
 @st.cache_resource
@@ -30,51 +53,101 @@ tabs = st.tabs(["Ver Cenários", "Editar Cenário", "Criar Novo"])
 
 # Tab 1: Ver Cenários
 with tabs[0]:
-    st.header("Cenários Disponíveis")
+    st.header("📋 Cenários Disponíveis")
     
     try:
         scenarios = manager.list_scenarios()
         
         if not scenarios:
-            st.warning("Nenhum cenário encontrado.")
+            st.warning("⚠️ Nenhum cenário encontrado.")
         else:
             st.success(f"✅ {len(scenarios)} cenário(s) encontrado(s)")
             
-            # Tabela resumo
+            # Criar tabela comparativa visual
+            st.markdown("### 🔍 Comparação Rápida")
+            st.markdown("Veja as principais diferenças entre os cenários:")
+            
+            # Tabela resumo com análise de tipo
             summaries = []
             for name in scenarios:
                 summary = manager.get_scenario_summary(name)
+                
+                # Identificar tipo de cenário
+                tipo = "📊 Equilibrado"
+                desc = summary.get("Descrição", "").lower()
+                nome_lower = name.lower()
+                
+                if "agressivo" in nome_lower or "alto" in desc:
+                    tipo = "🚀 Agressivo"
+                elif "conservador" in nome_lower:
+                    tipo = "🛡️ Conservador"
+                elif "seca" in nome_lower or "clima" in nome_lower:
+                    tipo = "🌦️ Climático"
+                elif "crise" in nome_lower:
+                    tipo = "⚠️ Crise"
+                
+                summary["Tipo"] = tipo
                 summaries.append(summary)
             
             df_summary = pd.DataFrame(summaries)
-            st.dataframe(df_summary, width='stretch')
+            
+            # Reordenar colunas para melhor visualização
+            cols_order = ["Cenário", "Tipo", "Descrição"]
+            other_cols = [col for col in df_summary.columns if col not in cols_order]
+            df_summary = df_summary[cols_order + other_cols]
+            
+            st.dataframe(df_summary, width='stretch', hide_index=True)
             
             st.markdown("---")
             
             # Detalhes de cada cenário
-            st.subheader("Detalhes dos Cenários")
+            st.subheader("🔎 Ver Detalhes Completos")
             
-            selected_scenario = st.selectbox(
-                "Selecione um cenário para visualizar",
+            col1, col2 = st.columns([3, 1])
+            
+            with col1:
+                selected_scenario = st.selectbox(
+                    "Escolha um cenário para ver todos os parâmetros:",
                 scenarios,
                 key="view_scenario_select"
             )
             
+            with col2:
+                st.markdown("<div style='padding-top: 32px;'></div>", unsafe_allow_html=True)
+                if st.button("🔄 Atualizar", width='stretch'):
+                    manager.clear_cache()
+                    st.rerun()
+            
             if selected_scenario:
-                col1, col2 = st.columns([2, 1])
+                st.markdown(f"### 📊 Detalhes: **{selected_scenario}**")
                 
-                with col1:
-                    st.markdown(f"### {selected_scenario}")
+                try:
+                    cfg = manager.load_scenario(selected_scenario)
+                    cfg_dict = OmegaConf.to_container(cfg, resolve=True)
                     
-                    try:
-                        cfg = manager.load_scenario(selected_scenario)
-                        cfg_dict = OmegaConf.to_container(cfg, resolve=True)
-                        
-                        # Mostra configuração em formato legível
+                    # Mostra seções importantes de forma organizada
+                    col1, col2 = st.columns(2)
+                    
+                    with col1:
+                        st.markdown("#### 💰 Preços de Mercado")
+                        if "mercado" in cfg_dict and "precos" in cfg_dict["mercado"]:
+                            precos = cfg_dict["mercado"]["precos"]
+                            for cultura, preco in precos.items():
+                                st.metric(cultura.title(), f"R$ {preco:.2f}/sc")
+                    
+                    with col2:
+                        st.markdown("#### 🌾 Informações da Fazenda")
+                        if "fazenda" in cfg_dict:
+                            fazenda = cfg_dict["fazenda"]
+                            st.metric("Área Disponível", f"{fazenda.get('area_disponivel', 0):.0f} ha")
+                            st.metric("Orçamento", f"R$ {fazenda.get('orcamento', 0):,.2f}")
+                    
+                    # Mostra todas as configurações em expansível
+                    with st.expander("🔧 Ver Todas as Configurações (JSON)"):
                         st.json(cfg_dict)
-                        
-                    except Exception as e:
-                        st.error(f"Erro ao carregar cenário: {e}")
+                    
+                except Exception as e:
+                    st.error(f"❌ Erro ao carregar cenário: {e}")
                 
                 with col2:
                     st.markdown("### Acoes")

@@ -34,12 +34,45 @@ Este diretório contém toda a documentação técnica do sistema, incluindo a n
    - Exemplos práticos
    - Troubleshooting
 
+### 🎨 Melhorias de Interface e UX (v2.1)
+
+6. **[UX_IMPROVEMENTS.md](UX_IMPROVEMENTS.md)**
+   - Melhorias de interface implementadas
+   - Antes/depois das páginas
+   - Padrões de design
+   - Impacto na experiência do usuário
+
+7. **[QUICK_GUIDE.md](QUICK_GUIDE.md)** 📖 **Guia do Usuário**
+   - Como usar o sistema passo a passo
+   - Interpretação de resultados
+   - Dicas e FAQ
+   - Conceitos-chave explicados
+
+### 🌦️ Integração Clima ↔ Fazenda ↔ Otimização (v2.1.1)
+
+8. **[INTEGRACAO_CLIMA_FAZENDA.md](INTEGRACAO_CLIMA_FAZENDA.md)**
+   - Fluxo integrado de localização climática
+   - Como dados da fazenda + clima afetam otimização
+   - Navegação entre páginas
+   - Benefícios da integração
+
 ### 📋 Documentação Existente
 
-6. **[AGENTS.MD](AGENTS.MD)**
+9. **[AGENTS.MD](AGENTS.MD)**
    - Documentação sobre agentes do sistema
 
+10. **[BEFORE_AFTER.md](BEFORE_AFTER.md)**
+    - Comparações de código
+    - Evolução do projeto
+
 ## 🚀 Quick Start
+
+### Para Usuários do Sistema
+
+1. Leia o **[QUICK_GUIDE.md](QUICK_GUIDE.md)** para aprender a usar
+2. Entenda como os **cenários funcionam**
+3. Execute sua primeira **otimização**
+4. Interprete os **resultados** com os guias
 
 ### Para Desenvolvedores Novos
 
@@ -54,6 +87,12 @@ Este diretório contém toda a documentação técnica do sistema, incluindo a n
 2. Siga os exemplos práticos
 3. Execute os testes sugeridos
 4. Consulte o troubleshooting se necessário
+
+### Para Entender Melhorias de UX
+
+1. Veja **[UX_IMPROVEMENTS.md](UX_IMPROVEMENTS.md)** para detalhes técnicos
+2. Consulte **[QUICK_GUIDE.md](QUICK_GUIDE.md)** para perspectiva do usuário
+3. Explore as páginas melhoradas (02_cenarios.py, 04_otimizacao.py)
 
 ## 🎓 Conceitos Principais
 
@@ -111,11 +150,14 @@ print(config.SCENARIO_DIR)  # Path centralizado
 ```
 docs/
 ├── INDEX.md                     ← Você está aqui
-├── SUMMARY.md                   ← 🌟 Comece aqui
+├── SUMMARY.md                   ← 🌟 Comece aqui (devs)
+├── QUICK_GUIDE.md               ← 📖 Guia do usuário
 ├── ARCHITECTURE_SCENARIOS.md    ← Arquitetura detalhada
 ├── IMPROVEMENTS_SUMMARY.md      ← Comparativo e benchmarks
+├── UX_IMPROVEMENTS.md           ← Melhorias de interface
 ├── DIAGRAMS.md                  ← Diagramas visuais
 ├── MIGRATION_GUIDE.md           ← Guia de migração
+├── BEFORE_AFTER.md              ← Evolução do código
 ├── AGENTS.MD                    ← Documentação existente
 └── README.md                    ← Documentação original
 ```
@@ -158,5 +200,6 @@ for name, cfg in comparison.items():
 
 ---
 
-**Última atualização**: 18 de outubro de 2025  
-**Versão**: 2.0
+**Última atualização**: Outubro 2025  
+**Versão**: 2.1.1 (com integração clima ↔ fazenda ↔ otimização)
+

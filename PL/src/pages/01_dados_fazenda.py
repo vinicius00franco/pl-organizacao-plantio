@@ -137,6 +137,10 @@ with tabs[2]:
         # Distribuição por cultura
         st.subheader("Distribuicao por Cultura")
         
+        # Selecionar coluna para análise
+        numeric_cols = ['produtividade_ton_ha', 'custo_ha', 'uso_agua_m3_ha', 'demanda_k_kg_ha', 'demanda_p_kg_ha', 'horas_maquina_ha']
+        col = st.selectbox("Escolha uma variável para analisar:", numeric_cols, key="col_select")
+        
         col1, col2 = st.columns([1, 2])
         
         with col1:
@@ -226,3 +230,35 @@ with tabs[2]:
                 file_name="dados_fazenda.csv",
                 mime="text/csv"
             )
+
+# Seção de Integração Climática - ADICIONADO
+st.markdown("---")
+st.markdown("### 🌦️ Integração com Dados Climáticos")
+
+if 'localizacao_selecionada' in st.session_state:
+    loc = st.session_state.localizacao_selecionada
+    st.success(f"✅ **Localização configurada:** {loc['cidade']}, {loc['estado']}")
+    st.info("💡 Os dados climáticos desta localização serão usados para ajustar as produtividades na otimização.")
+    
+    # Mostrar resumo climático se disponível
+    if 'resultado_clima' in st.session_state:
+        clima = st.session_state.resultado_clima
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.metric("Fator Climático", f"{clima.get('fator', 'N/A'):.2f}")
+        with col2:
+            st.metric("Precip. Média", f"{clima.get('precip_media', 'N/A'):.1f} mm")
+        with col3:
+            st.metric("Anos Analisados", loc.get('years', 2))
+        
+        # Botão para ir para otimização
+        st.markdown("---")
+        if st.button("🚀 Ir para Otimização com Clima", type="primary"):
+            st.switch_page("pages/04_otimizacao.py")
+else:
+    st.warning("⚠️ **Nenhuma localização climática selecionada.**")
+    st.info("👉 Vá para a página 'Análise Climática' e selecione uma cidade para integrar dados climáticos ao seu plano de plantio.")
+    
+    # Botão para ir para análise climática
+    if st.button("🌤️ Ir para Análise Climática", type="secondary"):
+        st.switch_page("pages/03_analise_clima.py")
