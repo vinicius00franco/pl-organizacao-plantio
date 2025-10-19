@@ -1,6 +1,7 @@
 """
 Serviço de gerenciamento de cenários YAML.
 Permite carregar, editar, salvar e criar novos cenários.
+Integrado com a configuração centralizada da aplicação.
 """
 
 import os
@@ -13,6 +14,10 @@ import yaml
 class ScenarioManager:
     """Gerenciador de cenários de otimização."""
     
+    # Cache interno de cenários carregados
+    _scenarios_cache: Dict[str, DictConfig] = {}
+    _cache_enabled: bool = True
+    
     def __init__(self, scenario_dir: str = "config/cenario", base_name: str = "base"):
         """
         Inicializa o gerenciador de cenários.
@@ -24,12 +29,26 @@ class ScenarioManager:
         self.scenario_dir = Path(scenario_dir)
         self.base_name = base_name
         self.base_path = self.scenario_dir / f"{base_name}.yaml"
-        
+        self._base_config_cache: Optional[DictConfig] = None
+    
+    def clear_cache(self):
+        """Limpa o cache de cenários."""
+        self._scenarios_cache.clear()
+        self._base_config_cache = None
+    
     def load_base_config(self) -> DictConfig:
-        """Carrega a configuração base."""
-        if not self.base_path.exists():
-            raise FileNotFoundError(f"Arquivo base não encontrado: {self.base_path}")
-        return OmegaConf.load(self.base_path)
+        """
+        Carrega a configuração base (com cache).
+        
+        Returns:
+            Configuração base
+        """
+        if self._base_config_cache is None or not self._cache_enabled:
+            if not self.base_path.exists():
+                raise FileNotFoundError(f"Arquivo base não encontrado: {self.base_path}")
+            self._base_config_cache = OmegaConf.load(self.base_path)
+        
+        return self._base_config_cache
     
     def list_scenarios(self) -> List[str]:
         """Lista todos os cenários disponíveis."""
@@ -43,27 +62,39 @@ class ScenarioManager:
         
         return sorted([self.base_name] + scenarios)
     
-    def load_scenario(self, scenario_name: str) -> DictConfig:
+    def load_scenario(self, scenario_name: str, use_cache: bool = True) -> DictConfig:
         """
         Carrega um cenário específico (mergeado com base).
         
         Args:
             scenario_name: Nome do cenário
+            use_cache: Se True, usa cache de cenários
         
         Returns:
             Configuração mergeada
         """
+        # Verifica cache
+        cache_key = f"{scenario_name}"
+        if use_cache and self._cache_enabled and cache_key in self._scenarios_cache:
+            return self._scenarios_cache[cache_key]
+        
         base_cfg = self.load_base_config()
         
         if scenario_name == self.base_name:
-            return base_cfg
+            result = base_cfg
+        else:
+            scenario_path = self.scenario_dir / f"{scenario_name}.yaml"
+            if not scenario_path.exists():
+                raise FileNotFoundError(f"Cenário não encontrado: {scenario_path}")
+            
+            scenario_cfg = OmegaConf.load(scenario_path)
+            result = OmegaConf.merge(base_cfg.copy(), scenario_cfg)
         
-        scenario_path = self.scenario_dir / f"{scenario_name}.yaml"
-        if not scenario_path.exists():
-            raise FileNotFoundError(f"Cenário não encontrado: {scenario_path}")
+        # Salva no cache
+        if self._cache_enabled:
+            self._scenarios_cache[cache_key] = result
         
-        scenario_cfg = OmegaConf.load(scenario_path)
-        return OmegaConf.merge(base_cfg.copy(), scenario_cfg)
+        return result
     
     def load_all_scenarios(self) -> Dict[str, DictConfig]:
         """
@@ -121,6 +152,11 @@ class ScenarioManager:
         # Salva configuração
         with open(scenario_path, 'w', encoding='utf-8') as f:
             yaml.dump(config, f, default_flow_style=False, allow_unicode=True, sort_keys=False)
+        
+        # Limpa cache para esse cenário
+        cache_key = f"{scenario_name}"
+        if cache_key in self._scenarios_cache:
+            del self._scenarios_cache[cache_key]
     
     def delete_scenario(self, scenario_name: str):
         """
@@ -135,6 +171,11 @@ class ScenarioManager:
         scenario_path = self.scenario_dir / f"{scenario_name}.yaml"
         if scenario_path.exists():
             scenario_path.unlink()
+            
+            # Limpa cache
+            cache_key = f"{scenario_name}"
+            if cache_key in self._scenarios_cache:
+                del self._scenarios_cache[cache_key]
         else:
             raise FileNotFoundError(f"Cenário não encontrado: {scenario_name}")
     

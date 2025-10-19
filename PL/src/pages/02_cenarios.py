@@ -11,7 +11,7 @@ import yaml
 root_dir = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(root_dir))
 
-from src.services.scenario_manager import ScenarioManager
+from src.config import get_scenario_manager
 from omegaconf import OmegaConf
 
 st.set_page_config(page_title="Cenários", page_icon="🎯", layout="wide")
@@ -19,12 +19,12 @@ st.set_page_config(page_title="Cenários", page_icon="🎯", layout="wide")
 st.title("Gerenciamento de Cenários")
 st.markdown("Visualize, edite e crie novos cenários de plantio.")
 
-# Inicializa o gerenciador
+# Inicializa o gerenciador centralizado
 @st.cache_resource
-def get_scenario_manager():
-    return ScenarioManager(scenario_dir="config/cenario", base_name="base")
+def _get_manager():
+    return get_scenario_manager()
 
-manager = get_scenario_manager()
+manager = _get_manager()
 
 tabs = st.tabs(["Ver Cenários", "Editar Cenário", "Criar Novo"])
 

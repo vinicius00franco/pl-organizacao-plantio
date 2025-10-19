@@ -13,7 +13,7 @@ import json
 root_dir = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(root_dir))
 
-from src.services.scenario_manager import ScenarioManager
+from src.config import get_scenario_manager
 from src.services.climate_service import ClimateService
 from src.models.otimizacao import run_optimization, calcular_metricas
 from omegaconf import OmegaConf
@@ -23,7 +23,7 @@ st.set_page_config(page_title="Otimização", page_icon="🚀", layout="wide")
 st.title("Otimização do Mix de Culturas")
 st.markdown("Execute cenários e visualize os planos de plantio recomendados.")
 
-manager = ScenarioManager()
+manager = get_scenario_manager()
 climate = ClimateService()
 
 if 'resultados' not in st.session_state:
