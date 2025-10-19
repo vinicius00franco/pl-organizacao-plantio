@@ -60,10 +60,11 @@ def main():
         st.markdown("""
         Use o menu acima para acessar:
         - **Dados da Fazenda**: Importar e visualizar dados
-        - **Cenarios**: Gerenciar cenarios de plantio
-        - **Analise Climatica**: Consultar dados climaticos
-        - **Otimizacao**: Executar e comparar cenarios
-        - **Relatorios**: Visualizar resultados e gargalos
+        - **Análise Financeira**: Dados econômicos (IPCA, SELIC, Dólar)
+        - **Análise Climática**: Consultar dados climáticos
+        - **Cenários**: Gerenciar cenários de plantio
+        - **Otimização**: Executar e comparar cenários
+        - **Relatórios**: Visualizar resultados e gargalos
         """)
         st.markdown("---")
         st.markdown("### ℹ️ Sobre")
@@ -91,13 +92,13 @@ def main():
     with col2:
         st.markdown('<div class="metric-card">', unsafe_allow_html=True)
         st.metric(
-            label="Cenarios",
-            value="Gerenciar",
-            delta="Criar e editar"
+            label="Análise Financeira",
+            value="Dados BC",
+            delta="IPCA, SELIC, Dólar"
         )
-        st.markdown("Visualize, edite e crie novos cenários de plantio com diferentes parâmetros.")
-        if st.button("Acessar Cenários", key="btn_cenarios", width='stretch'):
-            st.switch_page("pages/02_cenarios.py")
+        st.markdown("Análise inteligente de indicadores econômicos para ajustar preços e custos.")
+        if st.button("Acessar Financeiro", key="btn_financeiro", width='stretch'):
+            st.switch_page("pages/06_analise_financeira.py")
         st.markdown('</div>', unsafe_allow_html=True)
     
     with col3:
@@ -115,9 +116,21 @@ def main():
     st.markdown("---")
     
     # Segunda linha de cards
-    col4, col5 = st.columns(2)
+    col4, col5, col6 = st.columns(3)
     
     with col4:
+        st.markdown('<div class="metric-card">', unsafe_allow_html=True)
+        st.metric(
+            label="Cenários",
+            value="Gerenciar",
+            delta="Criar e editar"
+        )
+        st.markdown("Visualize, edite e crie novos cenários de plantio com diferentes parâmetros.")
+        if st.button("Acessar Cenários", key="btn_cenarios", width='stretch'):
+            st.switch_page("pages/02_cenarios.py")
+        st.markdown('</div>', unsafe_allow_html=True)
+    
+    with col5:
         st.markdown('<div class="metric-card">', unsafe_allow_html=True)
         st.metric(
             label="Otimizacao",
@@ -129,7 +142,7 @@ def main():
             st.switch_page("pages/04_otimizacao.py")
         st.markdown('</div>', unsafe_allow_html=True)
     
-    with col5:
+    with col6:
         st.markdown('<div class="metric-card">', unsafe_allow_html=True)
         st.metric(
             label="Relatorios",
@@ -152,23 +165,28 @@ def main():
            - Va para "Dados da Fazenda"
            - Faca upload de um CSV ou gere dados mock
         
-        2. **Configure cenarios**
-           - Acesse "Cenarios"
-           - Visualize os cenarios existentes (base, agressivo, conservador, etc.)
-           - Edite parametros ou crie novos cenarios
+        2. **Analise dados financeiros**
+           - Acesse "Análise Financeira"
+           - Busque dados do Banco Central (IPCA, SELIC, Dólar)
+           - Veja soluções inteligentes baseadas nos indicadores
         
         3. **Analise o clima**
            - Va para "Analise Climatica"
            - Consulte dados por cidade ou coordenadas
            - Compare diferentes localizacoes
         
-        4. **Execute a otimizacao**
-           - Acesse "Otimizacao"
+        4. **Configure cenarios**
+           - Acesse "Cenários"
+           - Visualize os cenarios existentes (base, agressivo, conservador, etc.)
+           - Aplique ajustes financeiros automaticamente
+        
+        5. **Execute a otimizacao**
+           - Va para "Otimizacao"
            - Selecione cenarios para executar
            - Visualize os planos de plantio recomendados
         
-        5. **Analise os resultados**
-           - Va para "Relatorios"
+        6. **Analise os resultados**
+           - Acesse "Relatorios"
            - Compare cenarios
            - Identifique gargalos e oportunidades
         """)

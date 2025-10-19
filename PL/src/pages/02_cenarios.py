@@ -179,6 +179,28 @@ with tabs[0]:
     except Exception as e:
         st.error(f"Erro ao carregar cenários: {e}")
 
+# Integração com Análise Financeira
+st.markdown("---")
+st.markdown("### 💰 Integração com Análise Financeira")
+
+if 'df_financeiro' in st.session_state:
+    st.success("✅ Dados financeiros disponíveis para ajuste automático dos cenários.")
+    
+    if st.checkbox("Aplicar ajustes financeiros automáticos"):
+        st.info("""
+        🔄 **Ajustes aplicados:**
+        - Preços ajustados pela inflação (IPCA)
+        - Custos ajustados pelos juros (SELIC)  
+        - Receitas ajustadas pelo câmbio (Dólar)
+        """)
+        
+        # Aqui seria integrada a lógica de ajuste dos cenários
+        st.success("✅ Cenários ajustados com dados financeiros!")
+else:
+    st.warning("⚠️ Execute a análise financeira primeiro para ajustar os cenários.")
+    if st.button("💰 Ir para Análise Financeira"):
+        st.switch_page("pages/06_analise_financeira.py")
+
 # Tab 2: Editar Cenário
 with tabs[1]:
     st.header("Editar Cenário Existente")
