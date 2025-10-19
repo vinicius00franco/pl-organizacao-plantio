@@ -2,3 +2,9 @@
 
 params:
   preco_soja: 2500
+
+location:
+  lat: -12.5449
+  lon: -55.7126
+  years: 2
+  media_historica: 600.0

@@ -1,0 +1,182 @@
+[2025-10-17 15:04:46] SMOKE TEST (external run): iniciando verificação do arquivo de log principal
+[2025-10-17 15:04:46] SMOKE TEST (external run): linha de verificação
+[2025-10-18T13:19:02.735733] --- INICIANDO NOVA SESSÃO DE LOG ---
+[2025-10-18 13:19:02] Carregando cenários de config/cenario (base=base)
+[2025-10-18 13:19:02] Cenários carregados: base, agressivo, conservador, crise_fertilizantes, preco_alto_soja, seca
+[2025-10-18 13:19:02] Executando cenário: base
+[2025-10-18 13:19:02] RUN: parâmetros (params_in) => {"n_dados": 1500, "seed": 42, "preco_soja": 2200, "preco_milho": 1300, "percentual_minimo_por_cultura": 0.15, "percentual_maximo_soja_produtiva": 0.6}
+[2025-10-18 13:19:02] RUN: recursos (resources) => {"AREA_TOTAL_DISPONIVEL_HA": 500, "ORCAMENTO_TOTAL_DISPONIVEL": 1100000, "AGUA_TOTAL_DISPONIVEL_M3": 250000, "POTASSIO_DISPONIVEL_KG": 45000, "FOSFORO_DISPONIVEL_KG": 42000, "AREA_NAO_COMPACTADA_HA": 400, "HORAS_MAQUINA_DISPONIVEIS": 6000, "CAPACIDADE_SILO_TON": 2500}
+[2025-10-18 13:19:02] GERAR DADOS: n_dados=1500, seed=42
+[2025-10-18 13:19:02] SETUP MODELO: iniciando criação do modelo
+[2025-10-18 13:19:02] REGRAS: min_por_cultura=0.15, max_sp=0.6, area_nc=400.0
+[2025-10-18 13:19:02] SETUP MODELO: finalizado
+[2025-10-18 13:19:02] Iniciando solução do modelo...
+[2025-10-18 13:19:02] Status do solver (raw): 1
+[2025-10-18 13:19:02] Status da otimização: Optimal
+[2025-10-18 13:19:02] Plantio (resultado):
+[2025-10-18 13:19:02] {'Hectares_Soja_Resistente': 100.0, 'Hectares_Soja_Produtiva': 240.0, 'Hectares_Milho_Safrinha': 60.0}
+[2025-10-18 13:19:02] Preços sombra:
+[2025-10-18 13:19:02] {'Minimo_Soja_Resistente': -0.0, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -1510.4994, 'Risco_Maximo_Soja_Produtiva': 2112.9012, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': 5914.5895, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': -0.0, 'Restricao_Potassio': -0.0, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}
+[2025-10-18 13:19:02] Executando cenário: agressivo
+[2025-10-18 13:19:02] RUN: parâmetros (params_in) => {"n_dados": 1500, "seed": 42, "preco_soja": 2200, "preco_milho": 1300, "percentual_minimo_por_cultura": 0.15, "percentual_maximo_soja_produtiva": 0.8}
+[2025-10-18 13:19:02] RUN: recursos (resources) => {"AREA_TOTAL_DISPONIVEL_HA": 500, "ORCAMENTO_TOTAL_DISPONIVEL": 1100000, "AGUA_TOTAL_DISPONIVEL_M3": 250000, "POTASSIO_DISPONIVEL_KG": 45000, "FOSFORO_DISPONIVEL_KG": 42000, "AREA_NAO_COMPACTADA_HA": 400, "HORAS_MAQUINA_DISPONIVEIS": 6000, "CAPACIDADE_SILO_TON": 2500}
+[2025-10-18 13:19:02] GERAR DADOS: n_dados=1500, seed=42
+[2025-10-18 13:19:02] SETUP MODELO: iniciando criação do modelo
+[2025-10-18 13:19:02] REGRAS: min_por_cultura=0.15, max_sp=0.8, area_nc=400.0
+[2025-10-18 13:19:02] SETUP MODELO: finalizado
+[2025-10-18 13:19:02] Iniciando solução do modelo...
+[2025-10-18 13:19:02] Status do solver (raw): 1
+[2025-10-18 13:19:02] Status da otimização: Optimal
+[2025-10-18 13:19:02] Plantio (resultado):
+[2025-10-18 13:19:02] {'Hectares_Soja_Resistente': 60.0, 'Hectares_Soja_Produtiva': 280.0, 'Hectares_Milho_Safrinha': 60.0}
+[2025-10-18 13:19:02] Preços sombra:
+[2025-10-18 13:19:02] {'Minimo_Soja_Resistente': -2112.9012, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -3623.4006, 'Risco_Maximo_Soja_Produtiva': -0.0, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': 8027.4907, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': -0.0, 'Restricao_Potassio': -0.0, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}
+[2025-10-18 13:19:02] Executando cenário: conservador
+[2025-10-18 13:19:02] RUN: parâmetros (params_in) => {"n_dados": 1500, "seed": 42, "preco_soja": 2200, "preco_milho": 1300, "percentual_minimo_por_cultura": 0.15, "percentual_maximo_soja_produtiva": 0.4}
+[2025-10-18 13:19:02] RUN: recursos (resources) => {"AREA_TOTAL_DISPONIVEL_HA": 500, "ORCAMENTO_TOTAL_DISPONIVEL": 1100000, "AGUA_TOTAL_DISPONIVEL_M3": 250000, "POTASSIO_DISPONIVEL_KG": 45000, "FOSFORO_DISPONIVEL_KG": 42000, "AREA_NAO_COMPACTADA_HA": 400, "HORAS_MAQUINA_DISPONIVEIS": 6000, "CAPACIDADE_SILO_TON": 2500}
+[2025-10-18 13:19:02] GERAR DADOS: n_dados=1500, seed=42
+[2025-10-18 13:19:02] SETUP MODELO: iniciando criação do modelo
+[2025-10-18 13:19:02] REGRAS: min_por_cultura=0.15, max_sp=0.4, area_nc=400.0
+[2025-10-18 13:19:02] SETUP MODELO: finalizado
+[2025-10-18 13:19:02] Iniciando solução do modelo...
+[2025-10-18 13:19:02] Status do solver (raw): 1
+[2025-10-18 13:19:02] Status da otimização: Optimal
+[2025-10-18 13:19:02] Plantio (resultado):
+[2025-10-18 13:19:02] {'Hectares_Soja_Resistente': 180.0, 'Hectares_Soja_Produtiva': 160.0, 'Hectares_Milho_Safrinha': 60.0}
+[2025-10-18 13:19:02] Preços sombra:
+[2025-10-18 13:19:02] {'Minimo_Soja_Resistente': -0.0, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -1510.4994, 'Risco_Maximo_Soja_Produtiva': 2112.9012, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': 5914.5895, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': -0.0, 'Restricao_Potassio': -0.0, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}
+[2025-10-18 13:19:02] Executando cenário: crise_fertilizantes
+[2025-10-18 13:19:02] RUN: parâmetros (params_in) => {"n_dados": 1500, "seed": 42, "preco_soja": 2200, "preco_milho": 1300, "percentual_minimo_por_cultura": 0.15, "percentual_maximo_soja_produtiva": 0.6}
+[2025-10-18 13:19:02] RUN: recursos (resources) => {"AREA_TOTAL_DISPONIVEL_HA": 500, "ORCAMENTO_TOTAL_DISPONIVEL": 1100000, "AGUA_TOTAL_DISPONIVEL_M3": 250000, "POTASSIO_DISPONIVEL_KG": 31500, "FOSFORO_DISPONIVEL_KG": 29400, "AREA_NAO_COMPACTADA_HA": 400, "HORAS_MAQUINA_DISPONIVEIS": 6000, "CAPACIDADE_SILO_TON": 2500}
+[2025-10-18 13:19:02] GERAR DADOS: n_dados=1500, seed=42
+[2025-10-18 13:19:02] SETUP MODELO: iniciando criação do modelo
+[2025-10-18 13:19:02] REGRAS: min_por_cultura=0.15, max_sp=0.6, area_nc=400.0
+[2025-10-18 13:19:02] SETUP MODELO: finalizado
+[2025-10-18 13:19:02] Iniciando solução do modelo...
+[2025-10-18 13:19:02] Status do solver (raw): 1
+[2025-10-18 13:19:02] Status da otimização: Optimal
+[2025-10-18 13:19:02] Plantio (resultado):
+[2025-10-18 13:19:02] {'Hectares_Soja_Resistente': 60.0, 'Hectares_Soja_Produtiva': 196.48952, 'Hectares_Milho_Safrinha': 60.0}
+[2025-10-18 13:19:02] Preços sombra:
+[2025-10-18 13:19:02] {'Minimo_Soja_Resistente': -581.35885, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -5415.1132, 'Risco_Maximo_Soja_Produtiva': -0.0, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': -0.0, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': -0.0, 'Restricao_Potassio': 81.15006, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}
+[2025-10-18 13:19:02] Executando cenário: preco_alto_soja
+[2025-10-18 13:19:02] RUN: parâmetros (params_in) => {"n_dados": 1500, "seed": 42, "preco_soja": 2500, "preco_milho": 1300, "percentual_minimo_por_cultura": 0.15, "percentual_maximo_soja_produtiva": 0.6}
+[2025-10-18 13:19:02] RUN: recursos (resources) => {"AREA_TOTAL_DISPONIVEL_HA": 500, "ORCAMENTO_TOTAL_DISPONIVEL": 1100000, "AGUA_TOTAL_DISPONIVEL_M3": 250000, "POTASSIO_DISPONIVEL_KG": 45000, "FOSFORO_DISPONIVEL_KG": 42000, "AREA_NAO_COMPACTADA_HA": 400, "HORAS_MAQUINA_DISPONIVEIS": 6000, "CAPACIDADE_SILO_TON": 2500}
+[2025-10-18 13:19:02] GERAR DADOS: n_dados=1500, seed=42
+[2025-10-18 13:19:02] SETUP MODELO: iniciando criação do modelo
+[2025-10-18 13:19:02] REGRAS: min_por_cultura=0.15, max_sp=0.6, area_nc=400.0
+[2025-10-18 13:19:02] SETUP MODELO: finalizado
+[2025-10-18 13:19:02] Iniciando solução do modelo...
+[2025-10-18 13:19:02] Status do solver (raw): 1
+[2025-10-18 13:19:02] Status da otimização: Optimal
+[2025-10-18 13:19:02] Plantio (resultado):
+[2025-10-18 13:19:02] {'Hectares_Soja_Resistente': 100.0, 'Hectares_Soja_Produtiva': 240.0, 'Hectares_Milho_Safrinha': 60.0}
+[2025-10-18 13:19:02] Preços sombra:
+[2025-10-18 13:19:02] {'Minimo_Soja_Resistente': -0.0, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -2562.2441, 'Risco_Maximo_Soja_Produtiva': 2497.0259, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': 6966.3342, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': -0.0, 'Restricao_Potassio': -0.0, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}
+[2025-10-18 13:19:02] Executando cenário: seca
+[2025-10-18 13:19:02] RUN: parâmetros (params_in) => {"n_dados": 1500, "seed": 42, "preco_soja": 2200, "preco_milho": 1300, "percentual_minimo_por_cultura": 0.15, "percentual_maximo_soja_produtiva": 0.6}
+[2025-10-18 13:19:02] RUN: recursos (resources) => {"AREA_TOTAL_DISPONIVEL_HA": 500, "ORCAMENTO_TOTAL_DISPONIVEL": 1100000, "AGUA_TOTAL_DISPONIVEL_M3": 180000, "POTASSIO_DISPONIVEL_KG": 45000, "FOSFORO_DISPONIVEL_KG": 42000, "AREA_NAO_COMPACTADA_HA": 400, "HORAS_MAQUINA_DISPONIVEIS": 6000, "CAPACIDADE_SILO_TON": 2500}
+[2025-10-18 13:19:02] GERAR DADOS: n_dados=1500, seed=42
+[2025-10-18 13:19:02] SETUP MODELO: iniciando criação do modelo
+[2025-10-18 13:19:02] REGRAS: min_por_cultura=0.15, max_sp=0.6, area_nc=400.0
+[2025-10-18 13:19:02] SETUP MODELO: finalizado
+[2025-10-18 13:19:02] Iniciando solução do modelo...
+[2025-10-18 13:19:02] Status do solver (raw): 1
+[2025-10-18 13:19:02] Status da otimização: Optimal
+[2025-10-18 13:19:02] Plantio (resultado):
+[2025-10-18 13:19:02] {'Hectares_Soja_Resistente': 60.0, 'Hectares_Soja_Produtiva': 186.48491, 'Hectares_Milho_Safrinha': 60.0}
+[2025-10-18 13:19:02] Preços sombra:
+[2025-10-18 13:19:02] {'Minimo_Soja_Resistente': -110.04695, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -4989.6931, 'Risco_Maximo_Soja_Produtiva': -0.0, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': -0.0, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': 13.456173, 'Restricao_Potassio': -0.0, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}
+[2025-10-18 13:19:02] Resumo salvo em resumo_cenarios.csv
+[2025-10-18 13:19:02] SMOKE TEST: iniciando verificação do arquivo de log principal
+[2025-10-18 13:19:02] SMOKE TEST: linha de verificação
+[2025-10-18T13:20:57.160848] --- INICIANDO NOVA SESSÃO DE LOG ---
+[2025-10-18 13:20:57] Carregando cenários de config/cenario (base=base)
+[2025-10-18 13:20:57] Cenários carregados: base, agressivo, conservador, crise_fertilizantes, preco_alto_soja, seca
+[2025-10-18 13:20:57] Executando cenário: base
+[2025-10-18 13:20:57] RUN: parâmetros (params_in) => {"n_dados": 1500, "seed": 42, "preco_soja": 2200, "preco_milho": 1300, "percentual_minimo_por_cultura": 0.15, "percentual_maximo_soja_produtiva": 0.6}
+[2025-10-18 13:20:57] RUN: recursos (resources) => {"AREA_TOTAL_DISPONIVEL_HA": 500, "ORCAMENTO_TOTAL_DISPONIVEL": 1100000, "AGUA_TOTAL_DISPONIVEL_M3": 250000, "POTASSIO_DISPONIVEL_KG": 45000, "FOSFORO_DISPONIVEL_KG": 42000, "AREA_NAO_COMPACTADA_HA": 400, "HORAS_MAQUINA_DISPONIVEIS": 6000, "CAPACIDADE_SILO_TON": 2500}
+[2025-10-18 13:20:57] GERAR DADOS: n_dados=1500, seed=42
+[2025-10-18 13:20:57] SETUP MODELO: iniciando criação do modelo
+[2025-10-18 13:20:57] REGRAS: min_por_cultura=0.15, max_sp=0.6, area_nc=400.0
+[2025-10-18 13:20:57] SETUP MODELO: finalizado
+[2025-10-18 13:20:57] Iniciando solução do modelo...
+[2025-10-18 13:20:57] Status do solver (raw): 1
+[2025-10-18 13:20:57] Status da otimização: Optimal
+[2025-10-18 13:20:57] Plantio (resultado):
+[2025-10-18 13:20:57] {'Hectares_Soja_Resistente': 100.0, 'Hectares_Soja_Produtiva': 240.0, 'Hectares_Milho_Safrinha': 60.0}
+[2025-10-18 13:20:57] Preços sombra:
+[2025-10-18 13:20:57] {'Minimo_Soja_Resistente': -0.0, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -1510.4994, 'Risco_Maximo_Soja_Produtiva': 2112.9012, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': 5914.5895, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': -0.0, 'Restricao_Potassio': -0.0, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}
+[2025-10-18 13:20:57] Executando cenário: agressivo
+[2025-10-18 13:20:57] RUN: parâmetros (params_in) => {"n_dados": 1500, "seed": 42, "preco_soja": 2200, "preco_milho": 1300, "percentual_minimo_por_cultura": 0.15, "percentual_maximo_soja_produtiva": 0.8}
+[2025-10-18 13:20:57] RUN: recursos (resources) => {"AREA_TOTAL_DISPONIVEL_HA": 500, "ORCAMENTO_TOTAL_DISPONIVEL": 1100000, "AGUA_TOTAL_DISPONIVEL_M3": 250000, "POTASSIO_DISPONIVEL_KG": 45000, "FOSFORO_DISPONIVEL_KG": 42000, "AREA_NAO_COMPACTADA_HA": 400, "HORAS_MAQUINA_DISPONIVEIS": 6000, "CAPACIDADE_SILO_TON": 2500}
+[2025-10-18 13:20:57] GERAR DADOS: n_dados=1500, seed=42
+[2025-10-18 13:20:57] SETUP MODELO: iniciando criação do modelo
+[2025-10-18 13:20:57] REGRAS: min_por_cultura=0.15, max_sp=0.8, area_nc=400.0
+[2025-10-18 13:20:57] SETUP MODELO: finalizado
+[2025-10-18 13:20:57] Iniciando solução do modelo...
+[2025-10-18 13:20:57] Status do solver (raw): 1
+[2025-10-18 13:20:57] Status da otimização: Optimal
+[2025-10-18 13:20:57] Plantio (resultado):
+[2025-10-18 13:20:57] {'Hectares_Soja_Resistente': 60.0, 'Hectares_Soja_Produtiva': 280.0, 'Hectares_Milho_Safrinha': 60.0}
+[2025-10-18 13:20:57] Preços sombra:
+[2025-10-18 13:20:57] {'Minimo_Soja_Resistente': -2112.9012, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -3623.4006, 'Risco_Maximo_Soja_Produtiva': -0.0, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': 8027.4907, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': -0.0, 'Restricao_Potassio': -0.0, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}
+[2025-10-18 13:20:57] Executando cenário: conservador
+[2025-10-18 13:20:57] RUN: parâmetros (params_in) => {"n_dados": 1500, "seed": 42, "preco_soja": 2200, "preco_milho": 1300, "percentual_minimo_por_cultura": 0.15, "percentual_maximo_soja_produtiva": 0.4}
+[2025-10-18 13:20:57] RUN: recursos (resources) => {"AREA_TOTAL_DISPONIVEL_HA": 500, "ORCAMENTO_TOTAL_DISPONIVEL": 1100000, "AGUA_TOTAL_DISPONIVEL_M3": 250000, "POTASSIO_DISPONIVEL_KG": 45000, "FOSFORO_DISPONIVEL_KG": 42000, "AREA_NAO_COMPACTADA_HA": 400, "HORAS_MAQUINA_DISPONIVEIS": 6000, "CAPACIDADE_SILO_TON": 2500}
+[2025-10-18 13:20:57] GERAR DADOS: n_dados=1500, seed=42
+[2025-10-18 13:20:57] SETUP MODELO: iniciando criação do modelo
+[2025-10-18 13:20:57] REGRAS: min_por_cultura=0.15, max_sp=0.4, area_nc=400.0
+[2025-10-18 13:20:57] SETUP MODELO: finalizado
+[2025-10-18 13:20:57] Iniciando solução do modelo...
+[2025-10-18 13:20:57] Status do solver (raw): 1
+[2025-10-18 13:20:57] Status da otimização: Optimal
+[2025-10-18 13:20:57] Plantio (resultado):
+[2025-10-18 13:20:57] {'Hectares_Soja_Resistente': 180.0, 'Hectares_Soja_Produtiva': 160.0, 'Hectares_Milho_Safrinha': 60.0}
+[2025-10-18 13:20:57] Preços sombra:
+[2025-10-18 13:20:57] {'Minimo_Soja_Resistente': -0.0, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -1510.4994, 'Risco_Maximo_Soja_Produtiva': 2112.9012, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': 5914.5895, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': -0.0, 'Restricao_Potassio': -0.0, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}
+[2025-10-18 13:20:57] Executando cenário: crise_fertilizantes
+[2025-10-18 13:20:57] RUN: parâmetros (params_in) => {"n_dados": 1500, "seed": 42, "preco_soja": 2200, "preco_milho": 1300, "percentual_minimo_por_cultura": 0.15, "percentual_maximo_soja_produtiva": 0.6}
+[2025-10-18 13:20:57] RUN: recursos (resources) => {"AREA_TOTAL_DISPONIVEL_HA": 500, "ORCAMENTO_TOTAL_DISPONIVEL": 1100000, "AGUA_TOTAL_DISPONIVEL_M3": 250000, "POTASSIO_DISPONIVEL_KG": 31500, "FOSFORO_DISPONIVEL_KG": 29400, "AREA_NAO_COMPACTADA_HA": 400, "HORAS_MAQUINA_DISPONIVEIS": 6000, "CAPACIDADE_SILO_TON": 2500}
+[2025-10-18 13:20:57] GERAR DADOS: n_dados=1500, seed=42
+[2025-10-18 13:20:57] SETUP MODELO: iniciando criação do modelo
+[2025-10-18 13:20:57] REGRAS: min_por_cultura=0.15, max_sp=0.6, area_nc=400.0
+[2025-10-18 13:20:57] SETUP MODELO: finalizado
+[2025-10-18 13:20:57] Iniciando solução do modelo...
+[2025-10-18 13:20:57] Status do solver (raw): 1
+[2025-10-18 13:20:57] Status da otimização: Optimal
+[2025-10-18 13:20:57] Plantio (resultado):
+[2025-10-18 13:20:57] {'Hectares_Soja_Resistente': 60.0, 'Hectares_Soja_Produtiva': 196.48952, 'Hectares_Milho_Safrinha': 60.0}
+[2025-10-18 13:20:57] Preços sombra:
+[2025-10-18 13:20:57] {'Minimo_Soja_Resistente': -581.35885, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -5415.1132, 'Risco_Maximo_Soja_Produtiva': -0.0, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': -0.0, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': -0.0, 'Restricao_Potassio': 81.15006, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}
+[2025-10-18 13:20:57] Executando cenário: preco_alto_soja
+[2025-10-18 13:20:57] RUN: parâmetros (params_in) => {"n_dados": 1500, "seed": 42, "preco_soja": 2500, "preco_milho": 1300, "percentual_minimo_por_cultura": 0.15, "percentual_maximo_soja_produtiva": 0.6}
+[2025-10-18 13:20:57] RUN: recursos (resources) => {"AREA_TOTAL_DISPONIVEL_HA": 500, "ORCAMENTO_TOTAL_DISPONIVEL": 1100000, "AGUA_TOTAL_DISPONIVEL_M3": 250000, "POTASSIO_DISPONIVEL_KG": 45000, "FOSFORO_DISPONIVEL_KG": 42000, "AREA_NAO_COMPACTADA_HA": 400, "HORAS_MAQUINA_DISPONIVEIS": 6000, "CAPACIDADE_SILO_TON": 2500}
+[2025-10-18 13:20:57] GERAR DADOS: n_dados=1500, seed=42
+[2025-10-18 13:20:57] SETUP MODELO: iniciando criação do modelo
+[2025-10-18 13:20:57] REGRAS: min_por_cultura=0.15, max_sp=0.6, area_nc=400.0
+[2025-10-18 13:20:57] SETUP MODELO: finalizado
+[2025-10-18 13:20:57] Iniciando solução do modelo...
+[2025-10-18 13:20:57] Status do solver (raw): 1
+[2025-10-18 13:20:57] Status da otimização: Optimal
+[2025-10-18 13:20:57] Plantio (resultado):
+[2025-10-18 13:20:57] {'Hectares_Soja_Resistente': 100.0, 'Hectares_Soja_Produtiva': 240.0, 'Hectares_Milho_Safrinha': 60.0}
+[2025-10-18 13:20:57] Preços sombra:
+[2025-10-18 13:20:57] {'Minimo_Soja_Resistente': -0.0, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -2562.2441, 'Risco_Maximo_Soja_Produtiva': 2497.0259, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': 6966.3342, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': -0.0, 'Restricao_Potassio': -0.0, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}
+[2025-10-18 13:20:57] Executando cenário: seca
+[2025-10-18 13:20:57] RUN: parâmetros (params_in) => {"n_dados": 1500, "seed": 42, "preco_soja": 2200, "preco_milho": 1300, "percentual_minimo_por_cultura": 0.15, "percentual_maximo_soja_produtiva": 0.6}
+[2025-10-18 13:20:57] RUN: recursos (resources) => {"AREA_TOTAL_DISPONIVEL_HA": 500, "ORCAMENTO_TOTAL_DISPONIVEL": 1100000, "AGUA_TOTAL_DISPONIVEL_M3": 180000, "POTASSIO_DISPONIVEL_KG": 45000, "FOSFORO_DISPONIVEL_KG": 42000, "AREA_NAO_COMPACTADA_HA": 400, "HORAS_MAQUINA_DISPONIVEIS": 6000, "CAPACIDADE_SILO_TON": 2500}
+[2025-10-18 13:20:57] GERAR DADOS: n_dados=1500, seed=42
+[2025-10-18 13:20:57] SETUP MODELO: iniciando criação do modelo
+[2025-10-18 13:20:57] REGRAS: min_por_cultura=0.15, max_sp=0.6, area_nc=400.0
+[2025-10-18 13:20:57] SETUP MODELO: finalizado
+[2025-10-18 13:20:57] Iniciando solução do modelo...
+[2025-10-18 13:20:57] Status do solver (raw): 1
+[2025-10-18 13:20:57] Status da otimização: Optimal
+[2025-10-18 13:20:57] Plantio (resultado):
+[2025-10-18 13:20:57] {'Hectares_Soja_Resistente': 60.0, 'Hectares_Soja_Produtiva': 186.48491, 'Hectares_Milho_Safrinha': 60.0}
+[2025-10-18 13:20:57] Preços sombra:
+[2025-10-18 13:20:57] {'Minimo_Soja_Resistente': -110.04695, 'Minimo_Soja_Produtiva': -0.0, 'Minimo_Milho_Safrinha': -4989.6931, 'Risco_Maximo_Soja_Produtiva': -0.0, 'Restricao_Area_Total': -0.0, 'Restricao_Area_Nao_Compactada': -0.0, 'Restricao_Orcamento': -0.0, 'Restricao_Agua': 13.456173, 'Restricao_Potassio': -0.0, 'Restricao_Fosforo': -0.0, 'Restricao_Horas_Maquina': -0.0, 'Restricao_Armazenagem': -0.0}
+[2025-10-18 13:20:57] Resumo salvo em resumo_cenarios.csv
+[2025-10-18 13:20:57] SMOKE TEST: iniciando verificação do arquivo de log principal
+[2025-10-18 13:20:57] SMOKE TEST: linha de verificação

@@ -2,3 +2,9 @@
 # @package _group_
 resources:
   AGUA_TOTAL_DISPONIVEL_M3: 180000
+
+location:
+  lat: -12.5449
+  lon: -55.7126
+  years: 2
+  media_historica: 600.0

@@ -1,0 +1,10 @@
+{
+  "lat": -12.5449,
+  "lon": -55.7126,
+  "years": 2,
+  "estado": "MT",
+  "cidade": "Sorriso",
+  "media_historica": 600,
+  "cache_days": 30,
+  "redis_url": "redis://localhost:6379/0"
+}

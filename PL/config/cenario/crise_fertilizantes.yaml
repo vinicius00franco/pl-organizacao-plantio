@@ -3,3 +3,9 @@
 resources:
   POTASSIO_DISPONIVEL_KG: 31500  # Redução de 30% de 45000
   FOSFORO_DISPONIVEL_KG: 29400   # Redução de 30% de 42000
+
+location:
+  lat: -12.5449
+  lon: -55.7126
+  years: 2
+  media_historica: 600.0

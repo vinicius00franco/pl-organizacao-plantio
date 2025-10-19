@@ -1,0 +1,7 @@
+cenario,status,lucro,plantio
+base,Optimal,2782302.123084742,"{""Hectares_Soja_Resistente"": 100.0, ""Hectares_Soja_Produtiva"": 240.0, ""Hectares_Milho_Safrinha"": 60.0}"
+agressivo,Optimal,2866818.171745312,"{""Hectares_Soja_Resistente"": 60.0, ""Hectares_Soja_Produtiva"": 280.0, ""Hectares_Milho_Safrinha"": 60.0}"
+conservador,Optimal,2613270.0257636025,"{""Hectares_Soja_Resistente"": 180.0, ""Hectares_Soja_Produtiva"": 160.0, ""Hectares_Milho_Safrinha"": 60.0}"
+crise_fertilizantes,Optimal,2196438.5699599683,"{""Hectares_Soja_Resistente"": 60.0, ""Hectares_Soja_Produtiva"": 196.48952, ""Hectares_Milho_Safrinha"": 60.0}"
+preco_alto_soja,Optimal,3232085.2314695683,"{""Hectares_Soja_Resistente"": 100.0, ""Hectares_Soja_Produtiva"": 240.0, ""Hectares_Milho_Safrinha"": 60.0}"
+seca,Optimal,2116126.6561999507,"{""Hectares_Soja_Resistente"": 60.0, ""Hectares_Soja_Produtiva"": 186.48491, ""Hectares_Milho_Safrinha"": 60.0}"
