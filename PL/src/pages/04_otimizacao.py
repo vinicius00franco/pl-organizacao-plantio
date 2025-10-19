@@ -15,7 +15,7 @@ sys.path.insert(0, str(root_dir))
 
 from src.config import get_scenario_manager
 from src.services.climate_service import ClimateService
-from src.models.otimizacao import run_optimization, calcular_metricas
+from src.models.otimizacao import run_optimization, calcular_metricas, calcular_recursos_utilizados
 from src.utils.scenario_utils import get_scenario_params
 from omegaconf import OmegaConf
 
@@ -127,6 +127,14 @@ with tabs[0]:
                         # Calcula métricas
                         if resultado['status'] == 'Optimal':
                             metricas = calcular_metricas(resultado, cfg_dict.get('resources', {}))
+                            # NOVO: Calcular recursos utilizados
+                            params_df = pd.DataFrame(resultado.get('params_agregados', {}))
+                            recursos_analise = calcular_recursos_utilizados(
+                                resultado, 
+                                cfg_dict.get('resources', {}), 
+                                params_df
+                            )
+                            resultado['recursos_analise'] = recursos_analise
                             resultado['metricas'] = metricas
                             # Adiciona parâmetros para referência
                             resultado['params'] = cfg_dict.get('params', {})
@@ -277,6 +285,180 @@ with tabs[1]:
                 with col4:
                     taxa = res['metricas']['taxa_utilizacao_area']
                     st.metric("📊 Taxa de Uso", f"{taxa:.1f}%")
+                
+                st.markdown("---")
+                
+                # NOVO: Análise de Recursos Não Utilizados
+                st.markdown("#### 📊 Análise de Recursos")
+                
+                if 'recursos_analise' in res and res['recursos_analise']:
+                    recursos = res['recursos_analise']
+                    
+                    # Mapeamento de nomes amigáveis para os recursos
+                    nomes_recursos = {
+                        'AREA_TOTAL_DISPONIVEL_HA': {'nome': 'Área Total Disponível', 'unidade': 'ha', 'icone': '🌾'},
+                        'AREA_NAO_COMPACTADA_HA': {'nome': 'Área Não Compactada', 'unidade': 'ha', 'icone': '🌱'},
+                        'ORCAMENTO_TOTAL_DISPONIVEL': {'nome': 'Orçamento Total', 'unidade': 'R$', 'icone': '💰'},
+                        'AGUA_TOTAL_DISPONIVEL_M3': {'nome': 'Água Disponível', 'unidade': 'm³', 'icone': '💧'},
+                        'POTASSIO_DISPONIVEL_KG': {'nome': 'Potássio Disponível', 'unidade': 'kg', 'icone': '🧪'},
+                        'FOSFORO_DISPONIVEL_KG': {'nome': 'Fósforo Disponível', 'unidade': 'kg', 'icone': '🧫'},
+                        'HORAS_MAQUINA_DISPONIVEIS': {'nome': 'Horas de Máquina', 'unidade': 'h', 'icone': '🚜'},
+                        'CAPACIDADE_SILO_TON': {'nome': 'Capacidade do Silo', 'unidade': 'ton', 'icone': '🏭'}
+                    }
+                    
+                    # Criar DataFrame para visualização
+                    dados_recursos = []
+                    for recurso_key, analise in recursos.items():
+                        if recurso_key in nomes_recursos:
+                            info = nomes_recursos[recurso_key]
+                            dados_recursos.append({
+                                'Recurso': f"{info['icone']} {info['nome']}",
+                                'Disponível': analise['disponivel'],
+                                'Utilizado': analise['utilizado'],
+                                'Não Utilizado': analise['nao_utilizado'],
+                                'Utilização': analise['percentual_utilizado'],
+                                'Unidade': info['unidade']
+                            })
+                    
+                    df_recursos = pd.DataFrame(dados_recursos)
+                    
+                    # Gráfico de barras empilhadas para visualização
+                    fig_recursos = px.bar(
+                        df_recursos,
+                        x='Recurso',
+                        y=['Utilizado', 'Não Utilizado'],
+                        title='📊 Utilização de Recursos - Disponível vs Utilizado',
+                        barmode='stack',
+                        color_discrete_map={'Utilizado': 'green', 'Não Utilizado': 'lightgray'},
+                        text_auto='.1f'
+                    )
+                    fig_recursos.update_layout(
+                        xaxis_title="Recursos",
+                        yaxis_title="Quantidade",
+                        showlegend=True
+                    )
+                    st.plotly_chart(fig_recursos, width='stretch')
+                    
+                    # Tabela detalhada
+                    st.markdown("##### 📋 Detalhamento por Recurso")
+                    df_exibir_recursos = df_recursos.copy()
+                    
+                    # Formatar valores baseado na unidade
+                    for idx, row in df_exibir_recursos.iterrows():
+                        unidade = row['Unidade']
+                        if unidade == 'R$':
+                            df_exibir_recursos.at[idx, 'Disponível'] = f"R$ {row['Disponível']:,.0f}"
+                            df_exibir_recursos.at[idx, 'Utilizado'] = f"R$ {row['Utilizado']:,.0f}"
+                            df_exibir_recursos.at[idx, 'Não Utilizado'] = f"R$ {row['Não Utilizado']:,.0f}"
+                        elif unidade in ['ha', 'm³', 'kg', 'h', 'ton']:
+                            df_exibir_recursos.at[idx, 'Disponível'] = f"{row['Disponível']:,.0f} {unidade}"
+                            df_exibir_recursos.at[idx, 'Utilizado'] = f"{row['Utilizado']:,.0f} {unidade}"
+                            df_exibir_recursos.at[idx, 'Não Utilizado'] = f"{row['Não Utilizado']:,.0f} {unidade}"
+                        df_exibir_recursos.at[idx, 'Utilização'] = f"{row['Utilização']:.1f}%"
+                    
+                    df_exibir_recursos = df_exibir_recursos.drop('Unidade', axis=1)
+                    st.dataframe(df_exibir_recursos, width='stretch', hide_index=True)
+                    
+                    # Insights sobre recursos não utilizados
+                    st.markdown("##### 💡 Insights sobre Recursos")
+                    
+                    # Recursos críticos (mais de 90% utilizados)
+                    recursos_criticos = df_recursos[df_recursos['Utilização'] > 90]
+                    if not recursos_criticos.empty:
+                        recursos_lista = recursos_criticos['Recurso'].tolist()
+                        st.warning(f"⚠️ **Recursos críticos:** {', '.join(recursos_lista)} estão sendo utilizados em mais de 90%. Considere aumentar esses recursos para potencial maior lucro.")
+                    
+                    # Recursos subutilizados (menos de 50% utilizados)
+                    recursos_sub = df_recursos[df_recursos['Utilização'] < 50]
+                    if not recursos_sub.empty:
+                        recursos_lista = recursos_sub['Recurso'].tolist()
+                        st.info(f"ℹ️ **Recursos subutilizados:** {', '.join(recursos_lista)} têm capacidade disponível. Você poderia expandir a produção se desejar.")
+                    
+                    # Melhor oportunidade de investimento
+                    if not df_recursos.empty:
+                        melhor_oportunidade = df_recursos.loc[df_recursos['Utilização'].idxmax()]
+                        if melhor_oportunidade['Utilização'] < 100:
+                            st.success(f"🎯 **Melhor oportunidade:** Aumentar {melhor_oportunidade['Recurso']} poderia gerar mais lucro, pois está {100-melhor_oportunidade['Utilização']:.1f}% disponível.")
+                
+                # NOVO: Análise de Preços Sombra
+                if res.get('shadow_prices'):
+                    shadow_prices = res['shadow_prices']
+                    
+                    st.markdown("##### 🎯 Análise de Preços Sombra")
+                    st.markdown("""
+                    **O que são preços sombra?**  
+                    Indicam quanto o lucro total aumentaria se você tivesse uma unidade adicional de cada recurso restritivo.
+                    """)
+                    
+                    # Mapeamento de restrições para nomes amigáveis
+                    nomes_restricoes = {
+                        'Restricao_Area_Total': {'nome': 'Área Total Disponível', 'unidade': 'R$/ha adicional', 'icone': '🌾'},
+                        'Restricao_Area_Nao_Compactada': {'nome': 'Área Não Compactada', 'unidade': 'R$/ha adicional', 'icone': '🌱'},
+                        'Restricao_Orcamento': {'nome': 'Orçamento Total', 'unidade': 'R$/R$ adicional', 'icone': '💰'},
+                        'Restricao_Agua': {'nome': 'Água Disponível', 'unidade': 'R$/m³ adicional', 'icone': '💧'},
+                        'Restricao_Potassio': {'nome': 'Potássio Disponível', 'unidade': 'R$/kg adicional', 'icone': '🧪'},
+                        'Restricao_Fosforo': {'nome': 'Fósforo Disponível', 'unidade': 'R$/kg adicional', 'icone': '🧫'},
+                        'Restricao_Horas_Maquina': {'nome': 'Horas de Máquina', 'unidade': 'R$/hora adicional', 'icone': '🚜'},
+                        'Restricao_Armazenagem': {'nome': 'Capacidade do Silo', 'unidade': 'R$/ton adicional', 'icone': '🏭'},
+                        'Minimo_Soja_Resistente': {'nome': 'Mínimo Soja Resistente', 'unidade': 'R$/ha a menos', 'icone': '🌾'},
+                        'Minimo_Soja_Produtiva': {'nome': 'Mínimo Soja Produtiva', 'unidade': 'R$/ha a menos', 'icone': '🌾'},
+                        'Minimo_Milho_Safrinha': {'nome': 'Mínimo Milho Safrinha', 'unidade': 'R$/ha a menos', 'icone': '🌽'},
+                        'Risco_Maximo_Soja_Produtiva': {'nome': 'Máximo Soja Produtiva', 'unidade': 'R$/ha a mais', 'icone': '⚠️'}
+                    }
+                    
+                    # Filtrar apenas preços sombra positivos (restrições ativas)
+                    precos_ativos = {k: v for k, v in shadow_prices.items() if v is not None and v > 0.01}
+                    
+                    if precos_ativos:
+                        dados_sombra = []
+                        for restricao, preco in precos_ativos.items():
+                            if restricao in nomes_restricoes:
+                                info = nomes_restricoes[restricao]
+                                dados_sombra.append({
+                                    'Restrição': f"{info['icone']} {info['nome']}",
+                                    'Preço Sombra': preco,
+                                    'Unidade': info['unidade']
+                                })
+                        
+                        if dados_sombra:
+                            df_sombra = pd.DataFrame(dados_sombra)
+                            
+                            # Gráfico de barras para preços sombra
+                            fig_sombra = px.bar(
+                                df_sombra,
+                                x='Restrição',
+                                y='Preço Sombra',
+                                title='💰 Preços Sombra - Valor de Relaxar Restrições',
+                                color='Preço Sombra',
+                                color_continuous_scale='Reds',
+                                text='Preço Sombra'
+                            )
+                            fig_sombra.update_traces(texttemplate='R$ %{text:.2f}')
+                            fig_sombra.update_layout(showlegend=False)
+                            st.plotly_chart(fig_sombra, width='stretch')
+                            
+                            # Tabela detalhada
+                            df_exibir_sombra = df_sombra.copy()
+                            df_exibir_sombra['Preço Sombra'] = df_exibir_sombra['Preço Sombra'].apply(lambda x: f"R$ {x:.2f}")
+                            df_exibir_sombra = df_exibir_sombra.drop('Unidade', axis=1)
+                            st.dataframe(df_exibir_sombra, width='stretch', hide_index=True)
+                            
+                            # Recomendação baseada nos preços sombra
+                            if not df_sombra.empty:
+                                melhor_investimento = df_sombra.loc[df_sombra['Preço Sombra'].idxmax()]
+                                st.success(f"🎯 **Melhor investimento:** Relaxar a restrição '{melhor_investimento['Restrição']}' geraria R$ {melhor_investimento['Preço Sombra']:.2f} de lucro adicional por unidade.")
+                                
+                                # Explicação adicional
+                                st.info("""
+                                **Como usar esta informação:**
+                                - 📈 **Preços sombra altos**: Indicam restrições críticas que limitam seu lucro
+                                - 💡 **Invista primeiro**: Nos recursos com maiores preços sombra
+                                - 🎯 **ROI garantido**: Cada unidade adicional desses recursos gera lucro extra
+                                """)
+                        else:
+                            st.info("ℹ️ Nenhuma restrição ativa encontrada. Todos os recursos estão disponíveis em abundância.")
+                    else:
+                        st.info("ℹ️ Nenhuma restrição ativa encontrada. A solução ótima não está limitada por recursos.")
                 
                 st.markdown("---")
                 

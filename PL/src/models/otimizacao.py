@@ -260,3 +260,97 @@ def calcular_metricas(resultado: Dict[str, Any], resources: Dict[str, float]) ->
     }
     
     return metricas
+
+
+def calcular_recursos_utilizados(resultado: Dict[str, Any], resources: Dict[str, float], params_df: pd.DataFrame) -> Dict[str, Any]:
+    """
+    Calcula quanto de cada recurso foi utilizado vs disponível.
+    
+    Args:
+        resultado: Resultado da otimização
+        resources: Recursos disponíveis
+        params_df: DataFrame com parâmetros por cultura
+    
+    Returns:
+        Dicionário com análise de recursos
+    """
+    if resultado['status'] != 'Optimal' or not resultado['plantio']:
+        return {}
+    
+    plantio = resultado['plantio']
+    
+    # Extrair valores das variáveis
+    x_sr = plantio.get('Hectares_Soja_Resistente', 0)
+    x_sp = plantio.get('Hectares_Soja_Produtiva', 0)
+    x_ms = plantio.get('Hectares_Milho_Safrinha', 0)
+    
+    def val(cultura, col):
+        try:
+            return float(params_df.at[cultura, col])
+        except Exception:
+            return 0.0
+    
+    # Calcular recursos utilizados
+    recursos_utilizados = {
+        'AREA_TOTAL_DISPONIVEL_HA': x_sr + x_sp + x_ms,
+        'ORCAMENTO_TOTAL_DISPONIVEL': (
+            val('Soja_Resistente', 'custo_ha') * x_sr +
+            val('Soja_Produtiva', 'custo_ha') * x_sp +
+            val('Milho_Safrinha', 'custo_ha') * x_ms
+        ),
+        'AGUA_TOTAL_DISPONIVEL_M3': (
+            val('Soja_Resistente', 'uso_agua_m3_ha') * x_sr +
+            val('Soja_Produtiva', 'uso_agua_m3_ha') * x_sp +
+            val('Milho_Safrinha', 'uso_agua_m3_ha') * x_ms
+        ),
+        'POTASSIO_DISPONIVEL_KG': (
+            val('Soja_Resistente', 'demanda_k_kg_ha') * x_sr +
+            val('Soja_Produtiva', 'demanda_k_kg_ha') * x_sp +
+            val('Milho_Safrinha', 'demanda_k_kg_ha') * x_ms
+        ),
+        'FOSFORO_DISPONIVEL_KG': (
+            val('Soja_Resistente', 'demanda_p_kg_ha') * x_sr +
+            val('Soja_Produtiva', 'demanda_p_kg_ha') * x_sp +
+            val('Milho_Safrinha', 'demanda_p_kg_ha') * x_ms
+        ),
+        'HORAS_MAQUINA_DISPONIVEIS': (
+            val('Soja_Resistente', 'horas_maquina_ha') * x_sr +
+            val('Soja_Produtiva', 'horas_maquina_ha') * x_sp +
+            val('Milho_Safrinha', 'horas_maquina_ha') * x_ms
+        ),
+        'CAPACIDADE_SILO_TON': (
+            val('Soja_Resistente', 'produtividade_ton_ha') * x_sr +
+            val('Soja_Produtiva', 'produtividade_ton_ha') * x_sp +
+            val('Milho_Safrinha', 'produtividade_ton_ha') * x_ms
+        )
+    }
+    
+    # Calcular recursos não utilizados e percentuais
+    recursos_analise = {}
+    for recurso, utilizado in recursos_utilizados.items():
+        disponivel = resources.get(recurso, 0)
+        nao_utilizado = disponivel - utilizado
+        percentual_utilizado = (utilizado / disponivel * 100) if disponivel > 0 else 0
+        
+        recursos_analise[recurso] = {
+            'disponivel': disponivel,
+            'utilizado': utilizado,
+            'nao_utilizado': nao_utilizado,
+            'percentual_utilizado': percentual_utilizado,
+            'percentual_nao_utilizado': 100 - percentual_utilizado
+        }
+    
+    # Área não compactada (recurso especial para restrições de diversificação)
+    area_nc_disponivel = resources.get('AREA_NAO_COMPACTADA_HA', 0)
+    area_nc_utilizada = x_sr + x_sp + x_ms  # Mesmo que área total para este caso
+    area_nc_nao_utilizada = area_nc_disponivel - area_nc_utilizada
+    
+    recursos_analise['AREA_NAO_COMPACTADA_HA'] = {
+        'disponivel': area_nc_disponivel,
+        'utilizado': area_nc_utilizada,
+        'nao_utilizado': area_nc_nao_utilizada,
+        'percentual_utilizado': (area_nc_utilizada / area_nc_disponivel * 100) if area_nc_disponivel > 0 else 0,
+        'percentual_nao_utilizado': 100 - ((area_nc_utilizada / area_nc_disponivel * 100) if area_nc_disponivel > 0 else 0)
+    }
+    
+    return recursos_analise
